@@ -69,7 +69,7 @@
     left: 0;
     right: 0;
     height: 420px;
-    background: $dark-overlay;
+    background: rgb(30, 30, 30);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,10 +100,10 @@
     z-index: 1;
     color: #fff;
     outline: 1px solid;
-    display: flex;
+    // display: flex;
     font-size: 14px;
     width: 143px;
-    height: 43px;
+    height: 60px;
     margin: 0 auto;
     align-items: center;
     justify-content: center;

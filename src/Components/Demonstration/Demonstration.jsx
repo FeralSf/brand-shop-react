@@ -1,22 +1,85 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './Demonstration.scss'
+import slimg from '../../img/Image-slide.jpg'
 
-export const Demonstration = () => {
+{
+	/* <img src={require(item.image)} /> */
+}
+const slideCollection = [
+	{
+		id: 1,
+		Img: slimg,
+		infoTitle: 'WOMEN COLLECTION 1',
+		infoText: 'MOSCHINO CHEAP AND CHIC',
+		infoDesc: `Compellingly actualize fully researched processes before proactive
+							outsourcing. Progressively syndicate collaborative architectures
+							before cutting-edge services. Completely visualize parallel core
+							competencies rather than exceptional portals.`,
+		infoPrice: 561,
+	},
+	{
+		id: 2,
+		infoTitle: 'WOMEN COLLECTION 2',
+		infoText: 'MOSCHINO CHEAP AND CHIC',
+		infoDesc: `Compellingly actualize fully researched processes before proactive
+							outsourcing. Progressively syndicate collaborative architectures
+							before cutting-edge services. Completely visualize parallel core
+							competencies rather than exceptional portals.`,
+		infoPrice: 562,
+	},
+	{
+		id: 3,
+		infoTitle: 'WOMEN COLLECTION 3',
+		infoText: 'MOSCHINO CHEAP AND CHIC',
+		infoDesc: `Compellingly actualize fully researched processes before proactive
+							outsourcing. Progressively syndicate collaborative architectures
+							before cutting-edge services. Completely visualize parallel core
+							competencies rather than exceptional portals.`,
+		infoPrice: 563,
+	},
+	{
+		id: 4,
+		infoTitle: 'WOMEN COLLECTION 4',
+		infoText: 'MOSCHINO CHEAP AND CHIC',
+		infoDesc: `Compellingly actualize fully researched processes before proactive
+							outsourcing. Progressively syndicate collaborative architectures
+							before cutting-edge services. Completely visualize parallel core
+							competencies rather than exceptional portals.`,
+		infoPrice: 564,
+	},
+	{
+		id: 5,
+		infoTitle: 'WOMEN COLLECTION 5',
+		infoText: 'MOSCHINO CHEAP AND CHIC',
+		infoDesc: `Compellingly actualize fully researched processes before proactive
+							outsourcing. Progressively syndicate collaborative architectures
+							before cutting-edge services. Completely visualize parallel core
+							competencies rather than exceptional portals.`,
+		infoPrice: 565,
+	},
+]
+
+export const Demonstration = ({
+	infoTitle,
+	img,
+	infoText,
+	infoDesc,
+	infoPrice,
+}) => {
 	return (
 		<div className='main'>
 			<section className='product-info'>
 				<div className='container'>
 					<div className='product-info__inner'>
-						<h2 className='product-info__title'>WOMEN COLLECTION</h2>
-						<hr className='product-info__line' />
-						<span className='product-info__text'>MOSCHINO CHEAP AND CHIC</span>
-						<p className='product-info__desc'>
-							Compellingly actualize fully researched processes before proactive
-							outsourcing. Progressively syndicate collaborative architectures
-							before cutting-edge services. Completely visualize parallel core
-							competencies rather than exceptional portals.{' '}
-						</p>
-						<span className='product-info__price'>$561</span>
+						<div>
+							<h2 className='product-info__title'>{infoTitle}</h2>
+
+							<hr className='product-info__line' />
+							<span className='product-info__text'>{infoText}</span>
+							<p className='product-info__desc'>{infoDesc}</p>
+							<span className='product-info__price'>{infoPrice}$</span>
+						</div>
+
 						<div className='product-info__long-line'></div>
 						<div className='sort product-info__sort product-info__sort--center'>
 							<details className='product-info__sort-toggle'>

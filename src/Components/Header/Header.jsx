@@ -1,16 +1,46 @@
-import React from 'react'
-import './Header.scss'
+import React, { useState } from 'react'
 import imageClose from '../../img/close.svg'
 import imageLogo from '../../img/logo.svg'
 import imageSearch from '../../img/search.svg'
 import imageCart from '../../img/cart.svg'
 import imageSocial from '../../img/social.svg'
+import classNames from 'classnames'
+import './Header.scss'
 
 export const Header = () => {
+	const [open, setOpen] = useState(false)
+	const [search, setSearch] = useState(false)
+	const [value, setValue] = useState('')
+
+	const openSearchOpen = classNames('header__search', {
+		open: search,
+	})
+
+	const openMenuOpen = classNames('header__menu-content', {
+		open: open,
+	})
+
+	const openSearch = () => {
+		setSearch(!search)
+	}
+
+	const openMenu = () => {
+		setOpen(!open)
+	}
+
+	// const filtered = products.filter(product => {
+	// 	return product.title.toLowerCase().includes(value.toLocaleLowerCase())
+	// })
+
 	return (
 		<header className='header'>
-			<nav className='header__menu-content'>
-				<img className='header__close' src={imageClose} alt='close' />
+			<nav className={openMenuOpen}>
+				<img
+					className='header__close'
+					src={imageClose}
+					alt='close'
+					onClick={() => openMenu()}
+				/>
 				<p className='header__title'>MENU</p>
 				<ul className='header__menu-list'>
 					<li className='header__sub-title'>MAN</li>
@@ -113,6 +143,7 @@ export const Header = () => {
 					</li>
 				</ul>
 			</nav>
+
 			<div className='header__inner'>
 				<div className='container'>
 					<div className='header__topline'>
@@ -120,8 +151,11 @@ export const Header = () => {
 							<a className='logo' href='home'>
 								<img className='header__logo' src={imageLogo} alt='logo' />
 							</a>
-							<button className='header__search-btn'>
-								<a href='demonstration'>
+							<button
+								className='header__search-btn'
+								onClick={() => openSearch()}
+							>
+								<a href='#'>
 									<img
 										className='header__search-img'
 										src={imageSearch}
@@ -129,16 +163,18 @@ export const Header = () => {
 									/>
 								</a>
 							</button>
-							<form className='header__search' action='form'>
+							<form className={openSearchOpen} action='form'>
 								<input
+									value={value}
 									className='header__search-field'
 									type='search'
 									placeholder='Search....'
+									onChange={e => setValue(e.target.value)}
 								/>
 							</form>
 						</div>
 						<div className='header__topline-right'>
-							<button className='header__menu'>
+							<button onClick={() => openMenu()} className='header__menu'>
 								<span className='header__menu-line'></span>
 								<span className='header__menu-line'></span>
 								<span className='header__menu-line'></span>

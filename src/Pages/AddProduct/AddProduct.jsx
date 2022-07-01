@@ -24,16 +24,6 @@ export const AddProduct = () => {
 		const value = e.target.value
 		setData({ ...data, [id]: value })
 	}
-	// Получаем наши продукты с FireBase и передаем данные в Redux
-	// useEffect(() => {
-	// 	getDocs(collection(db, 'products')).then(res =>
-	// 		dispatch(
-	// 			getAllProducts({
-	// 				arr: res.docs.map(el => ({ ...el.data(), id: el.id })),
-	// 			}),
-	// 		),
-	// 	)
-	// }, [dispatch])
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -112,11 +102,12 @@ export const AddProduct = () => {
 		<div style={{ fontSize: 50 }}>
 			<a href='home'> НАЖМИ НА МЕНЯ </a>
 			<div>
-				<form className='form' onSubmit={handleAdd}>
+				<form className='form__add-product' onSubmit={handleAdd}>
 					{productInputs.map(input => (
-						<div className='input' key={input.id}>
+						<div className='form__add-product__input-add' key={input.id}>
 							<label>{input.label}</label>
 							<input
+								className='form__add-product__input-add-field'
 								id={input.id}
 								type={input.type}
 								placeholder={input.placeholder}
@@ -126,6 +117,7 @@ export const AddProduct = () => {
 					))}
 					<div className='picture'>
 						<img
+							className='form__add-product__addImage'
 							src={
 								file
 									? URL.createObjectURL(file)
@@ -139,23 +131,40 @@ export const AddProduct = () => {
 						id='file'
 						onChange={e => setFile(e.target.files[0])}
 					/>
-					<button className='addButton' type='submit'>
+					<button className='form__add-product__addButton' type='submit'>
 						Кнопка добавления
 					</button>
 				</form>
 			</div>
-			<div>
+			<div className='products__items-add'>
 				{products.map(product => (
-					<div className='products' key={product.id}>
-						<h2>{product.title}</h2>
-						<p>{product.price}</p>
-						<img src={product.img} alt={product.title} />
-						<button
-							className='deleteButton'
-							onClick={() => handleDelete(product.id)}
+					<div key={product.id} className='products__items-add__item-add'>
+						<img
+							className='products__items-add__img-add'
+							src={product.img}
+							alt={product.title}
+						/>
+						<div
+							className='products__items-add__content-title-add'
+							key={product.id}
 						>
-							Delete
-						</button>
+							<h3 className='products__items-add__title-add'>
+								{product.title}
+							</h3>
+							<p className='products__items-add__descr-add'>
+								{product.descritpion}
+							</p>
+							<span className='products__items-add__price-add'>
+								{product.price}
+							</span>
+
+							<button
+								className='products__items-add__deleteButton'
+								onClick={() => handleDelete(product.id)}
+							>
+								Delete
+							</button>
+						</div>
 					</div>
 				))}
 			</div>

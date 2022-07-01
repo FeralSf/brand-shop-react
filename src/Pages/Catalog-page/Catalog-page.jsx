@@ -14,8 +14,8 @@ export const CatalogPage = () => {
 			<Header />
 			<Breadcrumb />
 
-			<Catalog />
-			<AddProduct />
+			{/* <Catalog /> */}
+			{/* <AddProduct /> */}
 			<Products />
 			<Pagination />
 			<Feature />

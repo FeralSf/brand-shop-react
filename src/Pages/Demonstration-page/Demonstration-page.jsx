@@ -5,14 +5,15 @@ import { Footer } from '../../Components/Footer'
 import { Breadcrumb } from '../../Components/Breadcrumb'
 import { Products } from '../../Components/Products'
 import { Feature } from '../../Components/Feature'
-import Slider from '../../Components/Slider/Slider'
+import SimpleSlider from '../../Components/SimpleSlider/SimpleSlider'
 
 export const DemonstrationPage = () => {
 	return (
 		<>
 			<Header />
 			<Breadcrumb />
-			<Slider />
+			<SimpleSlider />
+
 			{/* <Demonstration /> */}
 			<Products />
 			<Feature />

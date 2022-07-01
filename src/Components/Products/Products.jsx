@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-
 import './Products.scss'
-// import image1 from '../../img/fe-card-1.jpg'
-// import image2 from '../../img/fe-card-2.jpg'
-// import image3 from '../../img/fe-card-3.jpg'
-// import image4 from '../../img/fe-card-4.jpg'
-// import image5 from '../../img/fe-card-5.jpg'
-// import image6 from '../../img/fe-card-6.jpg'
 import imageCart from '../../img/cart.svg'
 import {
 	collection,
@@ -20,31 +13,30 @@ import { db } from '../../Services/firebase/firebase'
 
 export const Products = () => {
 	const products = useSelector(state => state.productsSlice.products)
+	const [value, setValue] = useState('')
 	// const [data, setData] = useState([])
 
-	// useEffect(() => {
-	// 	const unsub = onSnapshot(collection(db, 'products'), snapShot => {
-	// 		let list = []
-	// 		snapShot.docs.forEach(doc => {
-	// 			list.push({ id: doc.id, ...doc.data() })
-	// 		})
-	// 		setData(list)
-	// 	})
-	// 	return () => {
-	// 		unsub()
-	// 	}
-	// }, [])
+	const filtered = products.filter(product => {
+		return product.title.toLowerCase().includes(value.toLocaleLowerCase())
+	})
 
 	return (
 		<section className='products'>
+			<form action=''>
+				<input
+					type='text'
+					value={value}
+					onChange={e => setValue(e.target.value)}
+				/>
+			</form>
 			<div className='products__inner'>
 				<div className='container'>
-					{/* <h2 className='products__main-title'>Fetured Items</h2>
+					<h2 className='products__main-title'>Fetured Items</h2>
 					<p className='products__description'>
 						Shop for items based on what we featured in this week
-					</p> */}
+					</p>
 					<div className='products__items'>
-						{products.map(pr => (
+						{filtered.map(pr => (
 							<div key={pr.id} className='products__item'>
 								<div className='products__img'>
 									<img
@@ -55,6 +47,8 @@ export const Products = () => {
 									<div className='products__overlay'>
 										<button className='products__btn'>
 											<img
+												width='32'
+												height='29'
 												className='products__icon-cart'
 												src={imageCart}
 												alt='icon-cart'
@@ -64,8 +58,8 @@ export const Products = () => {
 									</div>
 								</div>
 								<div className='products__content-title'>
-									<h3 className='products__title'>{pr.title}</h3>
-									<p className='products__descr'>{pr.description}</p>
+									<h3 className='products__title'> {pr.title}</h3>
+									<p className='products__descr'>Описаниее{pr.descritpion}</p>
 									<span className='products__price'>{pr.price}$</span>
 								</div>
 							</div>
@@ -82,40 +76,3 @@ export const Products = () => {
 		</section>
 	)
 }
-
-//  <img
-// src={require('../../../assets/images/website/homepage/' +
-//   item.image +
-//   '.png')}
-// className="img-fluid"
-// alt={item.title}
-
-/* <div className='products__items'>
-						<article className='products__item'>
-							<div className='products__img'>
-								<img
-									className='products__img-card'
-									src={image1}
-									alt='product'
-								/>
-								<div className='products__overlay'>
-									<button className='products__btn'>
-										<img
-											className='products__icon-cart'
-										src={imageCart}
-											alt='icon-cart'
-										/>
-										Add to Cart
-									</button>
-								</div>
-							</div>
-							<div className='products__content-title'>
-								<h3 className='products__title'>ELLERY X M'O CAPSULE</h3>
-								<p className='products__descr'>
-									Known for her sculptural takes on traditional tailoring,
-									Australian arbiter of cool Kym Ellery teams up with Moda
-									Operandi.
-								</p>
-								<span className='products__price'>$52.00</span>
-							</div>
-						</article> </div> */
